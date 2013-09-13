@@ -4,14 +4,12 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.Vector;
-
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-
 import mainFrame.MFrame;
 
 public class MTable extends JTable {
@@ -41,5 +39,45 @@ public class MTable extends JTable {
 				}
 			}
 		);
+		
+		this.cells = new Cells();
 	}
+	
+	public void setValueAt(Object obj, int x, int y) {
+		this.dataModel.setValueAt(obj, x, y);
+	}
+	
+	public void turnOn(int x, int y) {
+		setValueAt(Color.GRAY, x, y);
+	}
+	
+	public void turnOff(int x, int y) {
+		setValueAt(Color.DARK_GRAY, x, y);
+	}
+	
+	public void turn(boolean flag, int x, int y) {
+		if(flag) 
+			turnOn(x, y);
+		else
+			turnOff(x, y);
+	}
+	
+	class Cells {
+		public Cells() {
+			this.activeCells = new boolean[MFrame.FIELD_WIDTH][MFrame.FIELD_HEIGHT];
+			
+			for(int i = 0; i < MFrame.FIELD_WIDTH; ++i)
+				activeCells[i][MFrame.FIELD_HEIGHT - 1] = true;
+			
+			for(int i = 0; i < MFrame.FIELD_WIDTH; ++i) {
+				for(int j = 0; j < MFrame.FIELD_HEIGHT; ++j) {
+					turn(activeCells[i][j], i, j);
+				}
+			}
+		}
+		
+		boolean[][] activeCells;
+	}
+	
+	private Cells cells;
 }

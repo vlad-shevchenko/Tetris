@@ -3,11 +3,20 @@ package field;
 import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
+import mainFrame.MFrame;
+
 public class FieldTableModel implements TableModel {
 
+	public FieldTableModel() {
+		this.data = new Object[MFrame.FIELD_WIDTH][MFrame.FIELD_HEIGHT];
+		this.fieldWidth = MFrame.FIELD_WIDTH;
+		this.fieldHeigth = MFrame.FIELD_HEIGHT;
+	}
+	
 	public FieldTableModel(Object[][] data) {
 		this.data = data;
 		this.fieldWidth = data.length;
