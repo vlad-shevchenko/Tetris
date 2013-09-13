@@ -20,9 +20,6 @@ public class MTable extends JTable {
 		this.rowHeight = 20;
 		this.rowMargin = 0;
 		this.setRowSelectionAllowed(false);
-//		this.getColumn(this.getColumnName(0)).setWidth(DEFAULT_COLUMN_WIDTH);
-		
-		this.setDefaultRenderer(Color.class, new ColorTableCellRenderer());
 	}
 	
 	private final int DEFAULT_ROW_HEIGHT = 20;

@@ -9,16 +9,24 @@ import javax.swing.JTable;
 public class MPanel extends JPanel {
 
 	public MPanel() {
-//		Field table = new Field(DEFAULT_FIELD_HEIGTH, DEFAULT_FIELD_WIDTH);
-		MTableModel model = new MTableModel(DEFAULT_FIELD_HEIGTH, DEFAULT_FIELD_WIDTH);
-		JTable table = new JTable(model);
+		Color[][] colorField = new Color[DEFAULT_FIELD_WIDTH][DEFAULT_FIELD_HEIGHT];
+		for(int i = 0; i < DEFAULT_FIELD_WIDTH; ++i)
+			for(int j = 0; j < DEFAULT_FIELD_HEIGHT; ++j)
+				colorField[i][j] = Color.DARK_GRAY;
+		
+		FieldTableModel model = new FieldTableModel(colorField);
+		MTable table = new MTable(model);
+		
+		table.setRowHeight(20);		
+		for(int i = 0; i < table.getColumnCount(); ++i) {
+			table.getColumnModel().getColumn(i).setWidth(20);
+		}
+		
 		table.setDefaultRenderer(Color.class, new ColorTableCellRenderer());
-		table.setRowSelectionAllowed(false);
-		this.add(table);
 		table.setVisible(true);
-//		this.repaint();
+		this.add(table);
 	}
 	
 	private final int DEFAULT_FIELD_WIDTH = 10;
-	private final int DEFAULT_FIELD_HEIGTH = 15;	
+	private final int DEFAULT_FIELD_HEIGHT = 15;	
 }
