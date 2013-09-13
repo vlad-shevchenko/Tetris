@@ -3,13 +3,13 @@ package field;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.util.Vector;
+import java.awt.Point;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+
 import mainFrame.MFrame;
 
 public class MTable extends JTable {
@@ -26,10 +26,10 @@ public class MTable extends JTable {
 			this.getColumnModel().setColumnMargin(MFrame.COLUMN_MARGIN);
 		}
 		
-		this.setRowMargin(MFrame.ROW_MARGIN);
 		
+		this.setRowMargin(MFrame.ROW_MARGIN);
 		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		this.setRowSelectionAllowed(false);
+		this.cellSelectionEnabled = false;
 		this.setDefaultRenderer(Color.class, 
 			new TableCellRenderer() {
 				public Component getTableCellRendererComponent(JTable table, Object value,
@@ -55,6 +55,14 @@ public class MTable extends JTable {
 		setValueAt(Color.DARK_GRAY, x, y);
 	}
 	
+	public void turnOn(Point p) {
+		turnOn(p.x, p.y);
+	}
+	
+	public void turnOff(Point p) {
+		turnOff(p.x, p.y);
+	}
+	
 	public void turn(boolean flag, int x, int y) {
 		if(flag) 
 			turnOn(x, y);
@@ -65,9 +73,6 @@ public class MTable extends JTable {
 	class Cells {
 		public Cells() {
 			this.activeCells = new boolean[MFrame.FIELD_WIDTH][MFrame.FIELD_HEIGHT];
-			
-			for(int i = 0; i < MFrame.FIELD_WIDTH; ++i)
-				activeCells[i][MFrame.FIELD_HEIGHT - 1] = true;
 			
 			for(int i = 0; i < MFrame.FIELD_WIDTH; ++i) {
 				for(int j = 0; j < MFrame.FIELD_HEIGHT; ++j) {
