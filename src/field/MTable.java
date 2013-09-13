@@ -1,30 +1,33 @@
 package field;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 public class MTable extends JTable {
 
-	public MTable() {
-		
-	}
-
 	public MTable(TableModel dm) {
 		super(dm);
 
-		this.setRowHeight(20);		
+		this.setRowHeight(MFrame.ROW_HEIGHT);		
 		for(int i = 0; i < this.getColumnCount(); ++i) {
-			this.getColumnModel().getColumn(i).setWidth(20);
+			TableColumn column = this.getColumnModel().getColumn(i);
+			column.setPreferredWidth(MFrame.COLUMN_WIDTH);
+			column.setMinWidth(MFrame.COLUMN_WIDTH);
+			column.setMaxWidth(MFrame.COLUMN_WIDTH);
+			this.getColumnModel().setColumnMargin(MFrame.COLUMN_MARGIN);
 		}
+		
+		this.setRowMargin(MFrame.ROW_MARGIN);
+		
+		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		this.setRowSelectionAllowed(false);
+		this.setDefaultRenderer(Color.class, new ColorTableCellRenderer());
 	}
-	
-	private final int DEFAULT_ROW_HEIGHT = 20;
-	private final int DEFAULT_COLUMN_WIDTH = 20;
-
 }
