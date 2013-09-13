@@ -17,13 +17,6 @@ public class MPanel extends JPanel {
 		FieldTableModel model = new FieldTableModel(colorField);
 		MTable table = new MTable(model);
 		
-		table.setRowHeight(20);		
-		for(int i = 0; i < table.getColumnCount(); ++i) {
-			table.getColumnModel().getColumn(i).setWidth(20);
-		}
-		
-		table.setDefaultRenderer(Color.class, new ColorTableCellRenderer());
-		table.setVisible(true);
 		this.add(table);
 	}
 	

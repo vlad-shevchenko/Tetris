@@ -17,8 +17,10 @@ public class MTable extends JTable {
 	public MTable(TableModel dm) {
 		super(dm);
 
-		this.rowHeight = 20;
-		this.rowMargin = 0;
+		this.setRowHeight(20);		
+		for(int i = 0; i < this.getColumnCount(); ++i) {
+			this.getColumnModel().getColumn(i).setWidth(20);
+		}
 		this.setRowSelectionAllowed(false);
 	}
 	
