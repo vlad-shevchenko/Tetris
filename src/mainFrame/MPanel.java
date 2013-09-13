@@ -1,11 +1,6 @@
 package mainFrame;
 
-import java.awt.Color;
-import java.awt.LayoutManager;
-
 import javax.swing.JPanel;
-import javax.swing.JTable;
-
 import field.FieldTableModel;
 import field.MTable;
 

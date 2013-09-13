@@ -1,7 +1,5 @@
 package mainFrame;
 
-import java.awt.GraphicsConfiguration;
-
 import javax.swing.JFrame;
 
 public class MFrame extends JFrame {
@@ -25,5 +23,7 @@ public class MFrame extends JFrame {
 	public static final int FIELD_HEIGHT = 15;	
 	
 	public static final int FRAME_WIDTH = FIELD_WIDTH * (COLUMN_WIDTH + COLUMN_MARGIN);
-	public static final int FRAME_HEIGHT = FIELD_HEIGHT * (ROW_HEIGHT + ROW_MARGIN);	
+	public static final int FRAME_HEIGHT = FIELD_HEIGHT * (ROW_HEIGHT + ROW_MARGIN);
+	
+	public static final int DEFAULT_TIMER = 500;
 }
