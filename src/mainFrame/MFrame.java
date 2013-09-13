@@ -1,7 +1,7 @@
-package field;
+package mainFrame;
 
 import java.awt.GraphicsConfiguration;
-import field.MPanel;
+
 import javax.swing.JFrame;
 
 public class MFrame extends JFrame {

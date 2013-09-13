@@ -1,7 +1,8 @@
 package start;
 
 import javax.swing.JFrame;
-import field.MFrame;
+
+import mainFrame.MFrame;
 
 public class Main {
 

@@ -1,14 +1,18 @@
 package field;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+
+import mainFrame.MFrame;
 
 public class MTable extends JTable {
 
@@ -28,6 +32,14 @@ public class MTable extends JTable {
 		
 		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		this.setRowSelectionAllowed(false);
-		this.setDefaultRenderer(Color.class, new ColorTableCellRenderer());
+		this.setDefaultRenderer(Color.class, 
+			new TableCellRenderer() {
+				public Component getTableCellRendererComponent(JTable table, Object value,
+						boolean isSelected, boolean hasFocus, int row, int column) {
+					setBackground((Color) value);
+					return null;
+				}
+			}
+		);
 	}
 }

@@ -3,7 +3,6 @@ package field;
 import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
