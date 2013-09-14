@@ -1,12 +1,15 @@
 package blocks;
 
+import java.awt.event.ActionListener;
+
 import javax.swing.Timer;
+
 import mainFrame.MFrame;
 
 public class MTimer extends Timer {
 
-	public MTimer() {
-		super(MFrame.DEFAULT_TIMER, null);
+	public MTimer(ActionListener listener) {
+		super(MFrame.DEFAULT_TIMER, listener);
 	}
 
 	public int getNormalDelay() {

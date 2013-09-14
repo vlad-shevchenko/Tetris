@@ -99,7 +99,7 @@ public class Block {
 		}
 
 		// Set center of block to center of field
-		setPos(new Point((int) (MFrame.FIELD_WIDTH / 2), -1));
+		setPos(new Point((int) (MFrame.FIELD_WIDTH / 2), -2));
 	}
 	
 	public void move(int x, int y) {
@@ -138,7 +138,7 @@ public class Block {
 		int maxY = getMaxY();
 		
 		if(minX < 0) forceMove(-minX, 0);
-		if(minY < 0) forceMove(0, -minY);
+//		if(minY < 0) forceMove(0, -minY);
 		if(maxX >= MFrame.FIELD_WIDTH) forceMove(MFrame.FIELD_WIDTH - maxX - 1, 0);
 		if(maxY > MFrame.FIELD_HEIGHT) forceMove(0, maxY - MFrame.FIELD_HEIGHT);
 	}

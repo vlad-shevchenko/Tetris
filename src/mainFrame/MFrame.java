@@ -17,7 +17,7 @@ public class MFrame extends JFrame {
 
 	public static boolean isInField(Point p) {
 		return (p.x >= 0 && 
-				p.y >= 0 && 
+//				p.y >= 0 && 
 				p.x < FIELD_WIDTH && 
 				p.y < FIELD_HEIGHT) ? true : false ;
 	}

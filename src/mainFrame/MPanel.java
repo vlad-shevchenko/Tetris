@@ -22,9 +22,9 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 		table = new MTable(model);
 		
 		table.addKeyListener(this);
-		table.timer = new MTimer();
+		
+		table.timer = new MTimer(this);
 		table.timer.start();
-		table.timer.addActionListener(this);
 		
 		currentBlock = new Block();
 	

@@ -104,6 +104,7 @@ public class MTable extends JTable {
 			if(p.y == MFrame.FIELD_HEIGHT - 1)
 				return true;
 			if((MFrame.isInField(new Point(p.x, p.y + 1))) && 
+				p.y >= 0 &&
 				(cells.activeCells[p.x][p.y + 1])) {
 				return true;
 			}
@@ -115,11 +116,12 @@ public class MTable extends JTable {
 		for(Point p : block.getBlock()) {
 			Point endPoint = Block.add(p, new Point(x, y));
 			
-			if(!MFrame.isInField(endPoint))
+			if(endPoint.y >= 0 && !MFrame.isInField(endPoint))
 				return false;
 			if(isBlockOut(block))
 				return false;
 			if((MFrame.isInField(endPoint)) && 
+				endPoint.y >= 0 &&
 				(cells.activeCells[endPoint.x][endPoint.y]))
 				return false;
 			
