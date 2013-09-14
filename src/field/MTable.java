@@ -128,6 +128,7 @@ public class MTable extends JTable {
 			
 		}
 		return true;
+		
 	}
 	
 	public boolean isLose(Block block) {
