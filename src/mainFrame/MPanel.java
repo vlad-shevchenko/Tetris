@@ -38,8 +38,7 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 
 	public void actionPerformed(ActionEvent ev) {
 		currentBlock.move(0, 1);
-		table.clear();
-		table.drawBlock(currentBlock);
+		table.redrawBlock(currentBlock);
 	}
 
 	public void keyPressed(KeyEvent ev) {
@@ -57,18 +56,14 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 			break;
 		}
 		}
-		
-		table.clear();
-		table.drawBlock(currentBlock);
+
+		table.redrawBlock(currentBlock);
 	}
 
-	public void keyReleased(KeyEvent ev) {
-		
-	}
-
-	public void keyTyped(KeyEvent ev) {
-		
-	}
+	public void keyReleased(KeyEvent ev) 
+	{}
+	public void keyTyped(KeyEvent ev) 
+	{}
 	
 	private Block currentBlock;
 	private MTable table;
