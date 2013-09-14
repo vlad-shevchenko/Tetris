@@ -107,6 +107,16 @@ public class MTable extends JTable {
 		}		
 		return false;
 	}
+
+	public boolean isMovePosible(Block block, int x, int y) {
+		for(Point p : block.getBlock()) {
+			Point endPoint = Block.add(p, new Point(x, y));
+			
+			if(isBlockOut(block) || cells.activeCells[endPoint.x][endPoint.y])
+				return false;
+		}
+		return true;
+	}
 	
 	class Cells {
 		public Cells() {
@@ -120,6 +130,16 @@ public class MTable extends JTable {
 		}
 		
 		boolean[][] activeCells;
+	}
+	
+	private boolean isBlockOut(Block block) {
+		int minX = block.getMinX();
+		int maxX = block.getMaxX();
+		
+		if(minX <= 0) return true;
+		if(maxX > MFrame.FIELD_WIDTH - 1) return true;
+		
+		return false;
 	}
 	
 	private Cells cells;

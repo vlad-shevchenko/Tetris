@@ -40,19 +40,21 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 			currentBlock = new Block();
 			table.redrawBlock(currentBlock);
 		}
-		currentBlock.move(0, 1);
+		if(table.isMovePosible(currentBlock, 0, 1))
+			currentBlock.move(0, 1);
 		table.redrawBlock(currentBlock);
 	}
 
 	public void keyPressed(KeyEvent ev) {
 		switch (ev.getKeyCode()) {
 		case KeyEvent.VK_LEFT : {
-			if(table.isMovePosible(-1, 0))
+			if(table.isMovePosible(currentBlock, -1, 0))
 				currentBlock.move(-1, 0);
 			break;
 		}
 		case KeyEvent.VK_RIGHT : {
-			currentBlock.move(1, 0);
+			if(table.isMovePosible(currentBlock, 1, 0))
+				currentBlock.move(1, 0);
 			break;
 		}
 		case KeyEvent.VK_SPACE : {
