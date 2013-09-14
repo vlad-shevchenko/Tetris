@@ -3,11 +3,13 @@ package field;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
+
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
+import blocks.Block;
 import mainFrame.MFrame;
 
 public class MTable extends JTable {
@@ -66,6 +68,20 @@ public class MTable extends JTable {
 			turnOn(x, y);
 		else
 			turnOff(x, y);
+	}
+	
+	public void clear() {
+		for(int i = 0; i < MFrame.FIELD_WIDTH; ++i) {
+			for(int j = 0; j < MFrame.FIELD_HEIGHT; ++j) {
+				turn(cells.activeCells[i][j], i, j);
+			}			
+		}
+	}
+	
+	public void drawBlock(Block block) {
+		for(Point p : block.getBlock()) {
+			turnOn(p);
+		}
 	}
 	
 	class Cells {

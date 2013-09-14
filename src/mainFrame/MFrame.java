@@ -25,5 +25,5 @@ public class MFrame extends JFrame {
 	public static final int FRAME_WIDTH = FIELD_WIDTH * (COLUMN_WIDTH + COLUMN_MARGIN);
 	public static final int FRAME_HEIGHT = FIELD_HEIGHT * (ROW_HEIGHT + ROW_MARGIN);
 	
-	public static final int DEFAULT_TIMER = 500;
+	public static final int DEFAULT_TIMER = 1000;
 }
