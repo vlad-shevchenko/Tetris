@@ -10,43 +10,65 @@ import mainFrame.MFrame;
 public class Block {
 
 	public Block() {
-//		this.points = new Point[4];
+		this.points = new Point[4];
 		this.pos = new Point(0, 0);
 		
-//		this.points[0] = new Point(0, 0);
-//		
-//		for(int i = 1; i < 4; ++i) {
-//			switch ((int) (Math.random() * 4)) {
-//			case 0: {
-//				this.points[i] = new Point(points[i - 1].x + 1, points[i - 1].y + 0);
-//				break;
-//			}
-//			case 1: {
-//				this.points[i] = new Point(points[i - 1].x + 0, points[i - 1].y + 1);
-//				break;
-//			}
-//			case 2: {
-//				this.points[i] = new Point(points[i - 1].x - 1, points[i - 1].y + 0);
-//				break;
-//			}
-//			case 3: {
-//				this.points[i] = new Point(points[i - 1].x + 0, points[i - 1].y - 1);
-//				break;
-//			}
-//			default: {
-//				--i;
-//			}
-//			}
-//			
-//			for(int j = 0; j < i; ++j) {
-//				if(points[j].equals(points[i])) {
-//					--i;
-//					break;
-//				}
-//			}
-//		}
+		this.points[0] = new Point(0, 0);
 		
-		
+		for(int i = 1; i < 4; ++i) {
+			switch ((int) (Math.random() * 4)) {
+			case 0: {
+				if((int) (Math.random() * 2) == 0)
+						this.points[i] = new Point(points[i - 1].x + 1, points[i - 1].y + 0);
+				else
+					if(i >= 2)
+						this.points[i] = new Point(points[i - 2].x + 1, points[i - 2].y + 0);
+					else
+						i--;
+				break;
+			}
+			case 1: {
+				if((int) (Math.random() * 2) == 0)
+						this.points[i] = new Point(points[i - 1].x + 0, points[i - 1].y + 1);
+				else
+					if(i >= 2)
+						this.points[i] = new Point(points[i - 2].x + 0, points[i - 2].y + 1);
+					else
+						i--;
+				break;
+			}
+			case 2: {
+				if((int) (Math.random() * 2) == 0)
+						this.points[i] = new Point(points[i - 1].x - 1, points[i - 1].y + 0);
+				else
+					if(i >= 2)
+						this.points[i] = new Point(points[i - 2].x - 1, points[i - 2].y + 0);
+					else
+						i--;
+				break;
+			}
+			case 3: {
+				if((int) (Math.random() * 2) == 0)
+						this.points[i] = new Point(points[i - 1].x + 0, points[i - 1].y - 1);
+				else
+					if(i >= 2)
+						this.points[i] = new Point(points[i - 2].x + 0, points[i - 2].y - 1);
+					else
+						i--;
+				break;
+			}
+			default: {
+				--i;
+			}
+			}
+			
+			for(int j = 0; j < i; ++j) {
+				if(points[j].equals(points[i])) {
+					--i;
+					break;
+				}
+			}
+		}
 
 		for(int i = 0; i < points.length; ++i) {
 			if(points[i].x > 1) {
@@ -193,5 +215,5 @@ public class Block {
 	private Point pos;
 //	private Point[] points;
 	private Point[] block = {new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0)};
-	private Point[] points = { new Point(0, 0), new Point(1, 0), new Point(2, 0), new Point(3, 0) };
+	private Point[] points = {new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0)};
 }

@@ -68,13 +68,20 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 				timer.start();
 			break;
 		}
+		case KeyEvent.VK_DOWN : {
+			this.timer.setDelay(MFrame.DEFAULT_TIMER / 5);
+			break;
+		}
 		}
 
 		table.redrawBlock(currentBlock);
 	}
 
 	public void keyReleased(KeyEvent ev) 
-	{}
+	{
+		if(ev.getKeyCode() == KeyEvent.VK_DOWN)
+			this.timer.setDelay(MFrame.DEFAULT_TIMER);
+	}
 	public void keyTyped(KeyEvent ev) 
 	{}
 	
