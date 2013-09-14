@@ -47,9 +47,9 @@ public class Block {
 			}
 		}
 		
-//		Point tmp = points[1];
-//		points[1] = points[0];
-//		points[0] = tmp;
+		Point tmp = points[1];
+		points[1] = points[0];
+		points[0] = tmp;
 
 		for(int i = 0; i < points.length; ++i) {
 			if(points[i].x > 1) {
@@ -72,10 +72,7 @@ public class Block {
 	}
 	
 	public void move(int x, int y) {
-		for(int i = 0; i < points.length; ++i) {
-			points[i].x += x;
-			points[i].y += y;
-		}
+		setPos(new Point(pos.x + x, pos.y + y));
 	}
 	
 	public void rotate() {
