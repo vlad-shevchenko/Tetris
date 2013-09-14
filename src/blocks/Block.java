@@ -73,6 +73,9 @@ public class Block {
 				break;
 			}
 		}
+
+		// Set center of block to center of field
+		setPos(new Point((int) (MFrame.FIELD_WIDTH / 2), (int) (MFrame.FIELD_HEIGHT / 2)));
 	}
 	
 	public void move(int x, int y) {

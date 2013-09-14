@@ -23,20 +23,23 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 		
 		table.addKeyListener(this);
 		
-		MTimer timer = new MTimer();
-		timer.start();
-		timer.addActionListener(this);
-		
 		currentBlock = new Block();
-		
-		// Set center of block to center of field
-		currentBlock.setPos(new Point((int) (MFrame.FIELD_WIDTH / 2), (int) (MFrame.FIELD_HEIGHT / 2)));
+	
 		table.drawBlock(currentBlock);
 		
 		this.add(table);
+		
+		MTimer timer = new MTimer();
+		timer.start();
+		timer.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent ev) {
+		if(table.isBlockDown(currentBlock)){
+			table.addBlock(currentBlock);
+			currentBlock = new Block();
+			table.redrawBlock(currentBlock);
+		}
 		currentBlock.move(0, 1);
 		table.redrawBlock(currentBlock);
 	}
@@ -44,7 +47,8 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent ev) {
 		switch (ev.getKeyCode()) {
 		case KeyEvent.VK_LEFT : {
-			currentBlock.move(-1, 0);
+			if(table.isMovePosible(-1, 0))
+				currentBlock.move(-1, 0);
 			break;
 		}
 		case KeyEvent.VK_RIGHT : {
