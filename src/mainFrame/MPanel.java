@@ -22,16 +22,15 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 		table = new MTable(model);
 		
 		table.addKeyListener(this);
+		table.timer = new MTimer();
+		table.timer.start();
+		table.timer.addActionListener(this);
 		
 		currentBlock = new Block();
 	
 		table.drawBlock(currentBlock);
 		
 		this.add(table);
-		
-		timer = new MTimer();
-		timer.start();
-		timer.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent ev) {
@@ -61,15 +60,15 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 			currentBlock.rotate();
 			break;
 		}
-		case KeyEvent.VK_E : {
-			if(timer.isRunning())
-				timer.stop();
+		case KeyEvent.VK_ENTER : {
+			if(table.timer.isRunning())
+				table.timer.stop();
 			else
-				timer.start();
+				table.timer.start();
 			break;
 		}
 		case KeyEvent.VK_DOWN : {
-			this.timer.setDelay(MFrame.DEFAULT_TIMER / 5);
+			table.timer.speedUp();
 			break;
 		}
 		}
@@ -80,12 +79,12 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 	public void keyReleased(KeyEvent ev) 
 	{
 		if(ev.getKeyCode() == KeyEvent.VK_DOWN)
-			this.timer.setDelay(MFrame.DEFAULT_TIMER);
+			table.timer.speedDown();
 	}
 	public void keyTyped(KeyEvent ev) 
 	{}
 	
-	private MTimer timer;
+//	private MTimer timer;
 	private Block currentBlock;
 	private MTable table;
 }

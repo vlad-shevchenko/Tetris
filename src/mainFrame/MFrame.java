@@ -28,8 +28,8 @@ public class MFrame extends JFrame {
 	public static final int ROW_MARGIN = 1;
 	public static final int COLUMN_MARGIN = 1;
 	
-	public static final int FIELD_WIDTH = 16;
-	public static final int FIELD_HEIGHT = 24;	
+	public static final int FIELD_WIDTH = 10;
+	public static final int FIELD_HEIGHT = 15;	
 	
 	public static final int FRAME_WIDTH = FIELD_WIDTH * (COLUMN_WIDTH + COLUMN_MARGIN);
 	public static final int FRAME_HEIGHT = FIELD_HEIGHT * (ROW_HEIGHT + ROW_MARGIN);

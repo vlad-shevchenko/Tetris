@@ -9,7 +9,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
-import blocks.Block;
+import blocks.*;
 import mainFrame.MFrame;
 
 public class MTable extends JTable {
@@ -90,15 +90,13 @@ public class MTable extends JTable {
 		this.drawBlock(block);
 	}
 	
-	private void findLines() {
-		
-	}
-	
 	public void addBlock(Block block) { 
 		for(Point p : block.getBlock()) {
 			this.cells.activeCells[p.x][p.y] = true;
-			findLines();
 		}
+		
+		if(this.findLines())
+			timer.setNormalDelay((int) (timer.getNormalDelay() * 0.80));
 	}
 	
 	public boolean isBlockDown(Block block) {
@@ -140,7 +138,49 @@ public class MTable extends JTable {
 			}
 		}
 		
+		public int findLines() {
+			boolean isFull = true;
+			
+			for(int i = MFrame.FIELD_HEIGHT - 1; i >= 0; --i) {
+				isFull = true;
+				
+				for(int j = 0; j < MFrame.FIELD_WIDTH; ++j) {
+					if(activeCells[j][i] == false) {
+						isFull = false;
+						break;
+					}
+				}
+				if(isFull)
+					return i;
+			}
+			
+			return -1;
+		}
+
+		public void eraseLine(int num) {
+			for(int i = num; i >= 0; --i) {
+				for(int j = 0; j < MFrame.FIELD_WIDTH; ++j) {
+					if(i == 0)
+						activeCells[j][i] = false;
+					else
+						activeCells[j][i] = activeCells[j][i - 1];
+				}
+			}
+		}
+		
 		boolean[][] activeCells;
+	}
+	
+	private boolean findLines() {
+		int num;
+		boolean erased = false;
+		
+		while((num = cells.findLines()) != -1) {
+			cells.eraseLine(num);
+			erased = true;
+		} 
+		
+		return erased;
 	}
 	
 	private boolean isBlockOut(Block block) {
@@ -154,4 +194,5 @@ public class MTable extends JTable {
 	}
 	
 	private Cells cells;
+	public MTimer timer;
 }
