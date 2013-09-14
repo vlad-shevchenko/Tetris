@@ -12,7 +12,7 @@ import mainFrame.MFrame;
 public class FieldTableModel implements TableModel {
 
 	public FieldTableModel() {
-		this.data = new Object[MFrame.FIELD_WIDTH][MFrame.FIELD_HEIGHT];
+		this.data = new Object[MFrame.FIELD_WIDTH + 2][MFrame.FIELD_HEIGHT + 2];
 		this.fieldWidth = MFrame.FIELD_WIDTH;
 		this.fieldHeigth = MFrame.FIELD_HEIGHT;
 	}

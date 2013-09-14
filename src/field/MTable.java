@@ -80,7 +80,8 @@ public class MTable extends JTable {
 	
 	public void drawBlock(Block block) {
 		for(Point p : block.getBlock()) {
-			turnOn(p);
+			if(p.y >= 0)
+				turnOn(p);
 		}
 	}
 	
@@ -102,8 +103,12 @@ public class MTable extends JTable {
 	
 	public boolean isBlockDown(Block block) {
 		for(Point p : block.getBlock()) {
-			if((p.y == MFrame.FIELD_HEIGHT - 1) || (cells.activeCells[p.x][p.y + 1]))
+			if(p.y == MFrame.FIELD_HEIGHT - 1)
 				return true;
+			if((MFrame.isInField(new Point(p.x, p.y + 1))) && 
+				(cells.activeCells[p.x][p.y + 1])) {
+				return true;
+			}
 		}		
 		return false;
 	}
@@ -112,15 +117,21 @@ public class MTable extends JTable {
 		for(Point p : block.getBlock()) {
 			Point endPoint = Block.add(p, new Point(x, y));
 			
-			if(isBlockOut(block) || cells.activeCells[endPoint.x][endPoint.y])
+			if(!MFrame.isInField(endPoint))
 				return false;
+			if(isBlockOut(block))
+				return false;
+			if((MFrame.isInField(endPoint)) && 
+				(cells.activeCells[endPoint.x][endPoint.y]))
+				return false;
+			
 		}
 		return true;
 	}
 	
 	class Cells {
 		public Cells() {
-			this.activeCells = new boolean[MFrame.FIELD_WIDTH][MFrame.FIELD_HEIGHT];
+			this.activeCells = new boolean[MFrame.FIELD_WIDTH + 12][MFrame.FIELD_HEIGHT + 2];
 			
 			for(int i = 0; i < MFrame.FIELD_WIDTH; ++i) {
 				for(int j = 0; j < MFrame.FIELD_HEIGHT; ++j) {
@@ -136,8 +147,8 @@ public class MTable extends JTable {
 		int minX = block.getMinX();
 		int maxX = block.getMaxX();
 		
-		if(minX <= 0) return true;
-		if(maxX > MFrame.FIELD_WIDTH - 1) return true;
+		if(minX < 0) return true;
+		if(maxX >= MFrame.FIELD_WIDTH) return true;
 		
 		return false;
 	}

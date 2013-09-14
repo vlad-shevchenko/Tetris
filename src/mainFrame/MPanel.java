@@ -29,7 +29,7 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 		
 		this.add(table);
 		
-		MTimer timer = new MTimer();
+		timer = new MTimer();
 		timer.start();
 		timer.addActionListener(this);
 	}
@@ -61,6 +61,13 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 			currentBlock.rotate();
 			break;
 		}
+		case KeyEvent.VK_E : {
+			if(timer.isRunning())
+				timer.stop();
+			else
+				timer.start();
+			break;
+		}
 		}
 
 		table.redrawBlock(currentBlock);
@@ -71,6 +78,7 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 	public void keyTyped(KeyEvent ev) 
 	{}
 	
+	private MTimer timer;
 	private Block currentBlock;
 	private MTable table;
 }

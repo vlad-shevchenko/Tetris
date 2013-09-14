@@ -10,41 +10,43 @@ import mainFrame.MFrame;
 public class Block {
 
 	public Block() {
-		this.points = new Point[4];
+//		this.points = new Point[4];
 		this.pos = new Point(0, 0);
 		
-		this.points[0] = new Point(0, 0);
+//		this.points[0] = new Point(0, 0);
+//		
+//		for(int i = 1; i < 4; ++i) {
+//			switch ((int) (Math.random() * 4)) {
+//			case 0: {
+//				this.points[i] = new Point(points[i - 1].x + 1, points[i - 1].y + 0);
+//				break;
+//			}
+//			case 1: {
+//				this.points[i] = new Point(points[i - 1].x + 0, points[i - 1].y + 1);
+//				break;
+//			}
+//			case 2: {
+//				this.points[i] = new Point(points[i - 1].x - 1, points[i - 1].y + 0);
+//				break;
+//			}
+//			case 3: {
+//				this.points[i] = new Point(points[i - 1].x + 0, points[i - 1].y - 1);
+//				break;
+//			}
+//			default: {
+//				--i;
+//			}
+//			}
+//			
+//			for(int j = 0; j < i; ++j) {
+//				if(points[j].equals(points[i])) {
+//					--i;
+//					break;
+//				}
+//			}
+//		}
 		
-		for(int i = 1; i < 4; ++i) {
-			switch ((int) (Math.random() * 4)) {
-			case 0: {
-				this.points[i] = new Point(points[i - 1].x + 1, points[i - 1].y + 0);
-				break;
-			}
-			case 1: {
-				this.points[i] = new Point(points[i - 1].x + 0, points[i - 1].y + 1);
-				break;
-			}
-			case 2: {
-				this.points[i] = new Point(points[i - 1].x - 1, points[i - 1].y + 0);
-				break;
-			}
-			case 3: {
-				this.points[i] = new Point(points[i - 1].x + 0, points[i - 1].y - 1);
-				break;
-			}
-			default: {
-				--i;
-			}
-			}
-			
-			for(int j = 0; j < i; ++j) {
-				if(points[j].equals(points[i])) {
-					--i;
-					break;
-				}
-			}
-		}
+		
 
 		for(int i = 0; i < points.length; ++i) {
 			if(points[i].x > 1) {
@@ -75,7 +77,7 @@ public class Block {
 		}
 
 		// Set center of block to center of field
-		setPos(new Point((int) (MFrame.FIELD_WIDTH / 2), (int) (MFrame.FIELD_HEIGHT / 2)));
+		setPos(new Point((int) (MFrame.FIELD_WIDTH / 2), -1));
 	}
 	
 	public void move(int x, int y) {
@@ -115,8 +117,8 @@ public class Block {
 		
 		if(minX < 0) forceMove(-minX, 0);
 		if(minY < 0) forceMove(0, -minY);
-		if(maxX > MFrame.FIELD_WIDTH - 1) forceMove(maxX - MFrame.FIELD_WIDTH - 1, 0);
-		if(maxY > MFrame.FIELD_HEIGHT - 1) forceMove(0, maxY - MFrame.FIELD_HEIGHT - 1);
+		if(maxX >= MFrame.FIELD_WIDTH) forceMove(MFrame.FIELD_WIDTH - maxX - 1, 0);
+		if(maxY > MFrame.FIELD_HEIGHT) forceMove(0, maxY - MFrame.FIELD_HEIGHT);
 	}
 
 	public Point[] getBlock() {
@@ -189,6 +191,7 @@ public class Block {
 	}
 
 	private Point pos;
-	private Point[] points;
+//	private Point[] points;
 	private Point[] block = {new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0)};
+	private Point[] points = { new Point(0, 0), new Point(1, 0), new Point(2, 0), new Point(3, 0) };
 }

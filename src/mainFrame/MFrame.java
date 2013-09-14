@@ -1,5 +1,7 @@
 package mainFrame;
 
+import java.awt.Point;
+
 import javax.swing.JFrame;
 
 public class MFrame extends JFrame {
@@ -13,6 +15,13 @@ public class MFrame extends JFrame {
 		this.pack();
 	}
 
+	public static boolean isInField(Point p) {
+		return (p.x >= 0 && 
+				p.y >= 0 && 
+				p.x < FIELD_WIDTH && 
+				p.y < FIELD_HEIGHT) ? true : false ;
+	}
+	
 	public static final int ROW_HEIGHT = 20;
 	public static final int COLUMN_WIDTH = 20;
 	
