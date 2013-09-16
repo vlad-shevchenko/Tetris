@@ -50,13 +50,17 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent ev) {
 		switch (ev.getKeyCode()) {
 		case KeyEvent.VK_LEFT : {
-			if(table.isMovePosible(currentBlock, -1, 0))
+			if(table.isMovePosible(currentBlock, -1, 0)) {
 				currentBlock.move(-1, 0);
+				table.redrawBlock(currentBlock);
+			}
 			break;
 		}
 		case KeyEvent.VK_RIGHT : {
-			if(table.isMovePosible(currentBlock, 1, 0))
+			if(table.isMovePosible(currentBlock, 1, 0)) {
 				currentBlock.move(1, 0);
+				table.redrawBlock(currentBlock);
+			}
 			break;
 		}
 		case KeyEvent.VK_SPACE : {
@@ -72,6 +76,10 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 		}
 		case KeyEvent.VK_DOWN : {
 			table.timer.speedUp();
+			if(table.isMovePosible(currentBlock, 0, 1)) {
+				currentBlock.move(0, 1);
+				table.timer.restart();
+			}
 			break;
 		}
 		}

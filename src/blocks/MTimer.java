@@ -8,6 +8,12 @@ public class MTimer extends Timer {
 	public MTimer() {
 		super(MFrame.DEFAULT_TIMER, null);
 	}
+	
+	public void restart() {
+		stop();
+		setDelay(normalDelay);
+		start();
+	}
 
 	public int getNormalDelay() {
 		return normalDelay;
