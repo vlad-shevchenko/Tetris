@@ -117,7 +117,7 @@ public class MTable extends JTable {
 		for(Point p : block.getBlock()) {
 			Point endPoint = Block.add(p, new Point(x, y));
 			
-			if(endPoint.y >= 0 && !MFrame.isInField(endPoint))
+			if(!MFrame.isInField(endPoint))
 				return false;
 			if(isBlockOut(block))
 				return false;
