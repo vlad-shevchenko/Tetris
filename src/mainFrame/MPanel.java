@@ -35,6 +35,9 @@ public class MPanel extends JPanel implements ActionListener, KeyListener {
 
 	public void actionPerformed(ActionEvent ev) {
 		if(table.isBlockDown(currentBlock)){
+			if(table.isLose(currentBlock)) {
+				table.timer.stop();
+			}
 			table.addBlock(currentBlock);
 			currentBlock = new Block();
 			table.redrawBlock(currentBlock);

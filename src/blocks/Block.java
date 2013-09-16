@@ -133,7 +133,7 @@ public class Block {
 			block[i] = add(points[i], pos);
 	
 		int minX = getMinX();
-		int minY = getMinY();
+//		int minY = getMinY();
 		int maxX = getMaxX();
 		int maxY = getMaxY();
 		

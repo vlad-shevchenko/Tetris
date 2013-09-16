@@ -92,7 +92,8 @@ public class MTable extends JTable {
 	
 	public void addBlock(Block block) { 
 		for(Point p : block.getBlock()) {
-			this.cells.activeCells[p.x][p.y] = true;
+			if(p.x >= 0 && p.y >= 0)
+				this.cells.activeCells[p.x][p.y] = true;
 		}
 		
 		if(this.findLines())
@@ -106,7 +107,7 @@ public class MTable extends JTable {
 			if((MFrame.isInField(new Point(p.x, p.y + 1))) && 
 				p.y >= 0 &&
 				(cells.activeCells[p.x][p.y + 1])) {
-				return true;
+					return true;
 			}
 		}		
 		return false;
@@ -129,9 +130,17 @@ public class MTable extends JTable {
 		return true;
 	}
 	
+	public boolean isLose(Block block) {
+		for(Point p : block.getBlock()) {
+			if(p.y < 0)
+				return true;
+		}
+		return false;
+	}
+	
 	class Cells {
 		public Cells() {
-			this.activeCells = new boolean[MFrame.FIELD_WIDTH + 12][MFrame.FIELD_HEIGHT + 2];
+			this.activeCells = new boolean[MFrame.FIELD_WIDTH + 3][MFrame.FIELD_HEIGHT + 3];
 			
 			for(int i = 0; i < MFrame.FIELD_WIDTH; ++i) {
 				for(int j = 0; j < MFrame.FIELD_HEIGHT; ++j) {
