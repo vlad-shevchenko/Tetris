@@ -97,7 +97,7 @@ public class MTable extends JTable {
 		}
 		
 		if(this.findLines())
-			timer.setNormalDelay((int) (timer.getNormalDelay() * 0.80));
+			timer.setNormalDelay((int) (timer.getNormalDelay() * 0.90));
 	}
 	
 	public boolean isBlockDown(Block block) {
